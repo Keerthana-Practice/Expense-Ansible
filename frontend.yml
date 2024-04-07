@@ -1,8 +1,27 @@
 name: frontend setup
 hosts: all
 become: yes
-tasks: install nginx
-ansible.builtin.yum:
+tasks:
+- name: install nginx
+  ansible.builtin.yum:
    name: nginx
    state: latest
+- name: start nginx sever
+  ansible.builtin.systemd_service:
+   state: restarted
+   name: nginx
+- name: Remove the default content that web server is serving.
+  ansible.builtin.file:
+   path: /usr/share/nginx/html/*
+   state: absent
+- name: Download the frontend content
+  ansible.builtin.unarchive:
+   src: https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip
+   dest: /tmp/frontend.zip
+   remote_src: yes
+- name: Extract the frontend content.
+  ansible.builtin.unarchive:
+   src: /usr/share/nginx/html
+   dest: /tmp/frontend.zip
+
 
