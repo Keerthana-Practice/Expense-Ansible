@@ -1,0 +1,6 @@
+name: MYSql setup
+host: all
+become: yes
+tasks:
+   name: Install MYSQL server
+
