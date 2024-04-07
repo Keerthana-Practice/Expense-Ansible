@@ -1,0 +1,7 @@
+name: sample first file
+hosts: all
+tasks:
+  name: Print hello world
+  ansible.builtin.debug:
+  msg: Hello world
+
