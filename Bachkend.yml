@@ -44,10 +44,13 @@
 
     - name: "Installing pip dependencies"
       ansible.builtin.pip:
-       name :
-        - PyMySQL
-        - cryptography
-      executable : pip3.9
+       name : PyMySQL
+       executable : pip3.9
+
+    - name: "Installing cyrptograpy dependencies"
+      ansible.builtin.pip:
+       name: cryptography
+       executable: pip3.9
 
     - name : load scheme
       community.mysql.mysql_db:
