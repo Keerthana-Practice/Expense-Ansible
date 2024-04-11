@@ -3,7 +3,7 @@
   become: yes
   tasks:
     - name : install nodejs
-      community.general.npm:
+      ansible.builtin.dnf:
         name : nodejs
         version : 20
 
@@ -21,6 +21,11 @@
        src: https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip
        dest: /tmp/backend.zip
        remote_src: yes
+
+    - name : install dependencies of the project
+      community.general.npm:
+       name : npm
+       state : latest
 
     - name : Backend config file
       ansible.builtin.copy:
