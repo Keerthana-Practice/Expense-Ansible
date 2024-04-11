@@ -42,7 +42,7 @@
        name: mysql
        state: latest
 
-    - name :
+    - name : load scheme
       community.mysql.mysql_db:
         state: import
         name: all
