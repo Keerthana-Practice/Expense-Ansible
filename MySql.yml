@@ -10,7 +10,7 @@
    - name : restart servers
      ansible.builtin.systemd_service:
        name: mysqld
-       state: restarted
+       state: started
        reload: yes
 
    - name :
