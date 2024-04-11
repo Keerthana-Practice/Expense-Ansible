@@ -1,6 +1,7 @@
 - name: frontend setup
   hosts: all
   become: yes
+  ignore_unreachable: true
   tasks:
    - name: install nginx
      ansible.builtin.yum:
