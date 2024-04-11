@@ -4,7 +4,7 @@
   tasks:
    - name: Install MYSQL server
      ansible.builtin.dnf:
-      name: mysql server
+      name: mysql-server
       state: latest
 
    - name : restart servers
