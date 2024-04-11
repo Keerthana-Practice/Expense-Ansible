@@ -2,5 +2,22 @@ name: MYSql setup
 host: all
 become: yes
 tasks:
-   name: Install MYSQL server
+   - name: Install MYSQL server
+     ansible.builtin.dnf:
+      name: mysql server
+      state: latest
+
+   - name : restart servers
+     ansible.builtin.systemd_service:
+       name: mysqld
+       state: restarted
+       reload: yes
+
+   - name :
+     community.mysql.mysql_user:
+       state: present
+       name: root
+       password: ExpenseApp@1
+
+
 
