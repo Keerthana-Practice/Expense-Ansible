@@ -18,11 +18,9 @@
        name: pymysql
        state: present
 
-   - name :
-     community.mysql.mysql_user:
-       state: present
-       name: root
-       password: ExpenseApp@1
+   - name : setup My sql password
+     ansible.builtin.shell: mysql_secure_installation  --set-root-pass ExpenseApp@1
+
 
 
 
