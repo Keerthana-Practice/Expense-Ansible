@@ -9,7 +9,7 @@
 
    - name: copy nginx configuration
      ansible.builtin.copy:
-      src: expense.config
+      src: C:\Users\Admin\Desktop\my\Expense-Ansible\expense.config
       dest: /etc/nginx/default.d/expense.config
       remote_src: yes
 
