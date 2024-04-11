@@ -1,0 +1,48 @@
+- name : Backend setup
+  host : all
+  become: yes
+  tasks:
+    - name : install nodejs
+      community.general.npm:
+        name : nodejs
+        version : 20
+
+    - name : Adding user
+      ansible.builtin.user:
+       name: expense
+
+    - name :
+      ansible.builtin.file:
+          path: /etc/app
+          state: directory
+
+    - name : Download and extract the frontend content
+      ansible.builtin.unarchive:
+       src: https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip
+       dest: /tmp/backend.zip
+       remote_src: yes
+
+    - name : Backend config file
+      ansible.builtin.copy:
+        src: backend.service
+        dest: /etc/systemd/system/backend.service
+
+    - name : enable system services
+      ansible.builtin.systemd_service:
+       state : restarted
+       name : backend
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
