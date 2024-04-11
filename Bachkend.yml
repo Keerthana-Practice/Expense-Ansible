@@ -1,5 +1,5 @@
-- name : Backend setup
-  host : all
+- name: backend setup
+  hosts: all
   become: yes
   tasks:
     - name : install nodejs
