@@ -43,9 +43,11 @@
        state: latest
 
     - name: "Installing pip dependencies"
-      pip:
-        name: pymysql
-        state: present
+      ansible.builtin.pip:
+       name :
+        - pymysql
+        - cryptography
+      executable : pip3.9
 
     - name : load scheme
       community.mysql.mysql_db:
