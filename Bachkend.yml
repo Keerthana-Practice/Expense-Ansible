@@ -2,13 +2,6 @@
   hosts: all
   become: yes
   tasks:
-    - name : disable default nodejs module
-      ansible.builtin.shell: dnf module disable nodejs -y
-
-    - name: enable default nodejs module
-      ansible.builtin.shell: dnf module enable nodejs -y
-
-
     - name : install nodejs
       ansible.builtin.dnf:
         name : nodejs
@@ -48,6 +41,11 @@
       ansible.builtin.dnf:
        name: mysql
        state: latest
+
+    - name: "Installing pip dependencies"
+      pip:
+        name: pymysql
+        state: present
 
     - name : load scheme
       community.mysql.mysql_db:
