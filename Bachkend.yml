@@ -2,6 +2,13 @@
   hosts: all
   become: yes
   tasks:
+    - name : disable default nodejs module
+      ansible.builtin.shell: dnf module disable nodejs -y
+
+    - name: enable default nodejs module
+      ansible.builtin.shell: dnf module enable nodejs -y
+
+
     - name : install nodejs
       ansible.builtin.dnf:
         name : nodejs
