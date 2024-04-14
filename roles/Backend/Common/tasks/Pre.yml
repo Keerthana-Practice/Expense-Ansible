@@ -1,0 +1,15 @@
+- name : cleaning up old content
+  ansible.builtin.file:
+    path : app-loc
+    state : absent
+
+- name :
+  ansible.builtin.file:
+    path: app-loc
+    state: directory
+
+- name : Download and extract the frontend content
+  ansible.builtin.unarchive:
+    src: https://expense-artifacts.s3.amazonaws.com/expense-{{Component}}-v2.zip
+    dest: app-loc
+    remote_src: yes
