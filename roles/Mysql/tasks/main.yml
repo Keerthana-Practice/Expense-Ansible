@@ -1,0 +1,18 @@
+- name: Install MYSQL server
+  ansible.builtin.dnf:
+    name: mysql-server
+    state: latest
+
+- name : restart servers
+  ansible.builtin.systemd_service:
+    name: mysqld
+    state: started
+    enabled: yes
+
+- name: "Installing pip dependencies"
+  pip:
+    name: pymysql
+    state: present
+
+- name : setup My sql password
+  ansible.builtin.shell: mysql_secure_installation  --set-root-pass ExpenseApp@1
