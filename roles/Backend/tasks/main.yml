@@ -1,0 +1,65 @@
+- name : install nodejs
+  ansible.builtin.dnf:
+    name : nodejs
+    state : latest
+
+- name : Adding user
+  ansible.builtin.user:
+    name: expense
+
+- name : cleaning up old content
+  ansible.builtin.file:
+    path : /app
+    state : absent
+
+- name :
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+- name : Download and extract the frontend content
+  ansible.builtin.unarchive:
+    src: https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip
+    dest: /app
+    remote_src: yes
+
+- name : install dependencies of the project
+  community.general.npm:
+    path : /app
+    state : latest
+
+- name : Backend config file
+  ansible.builtin.copy:
+    src: Backend.service
+    dest: /etc/systemd/system/Backend.service
+
+- name : install Mysql
+  ansible.builtin.dnf:
+    name: mysqlBachkend.yml
+    state: latest
+
+- name: "Installing pip dependencies"
+  ansible.builtin.pip:
+    name : PyMySQL
+    executable : pip3.9
+
+- name: "Installing cyrptograpy dependencies"
+  ansible.builtin.pip:
+    name: cryptography
+    executable: pip3.9
+
+- name : load scheme
+  community.mysql.mysql_db:
+    state: import
+    name: all
+    target: /app/schema/backend.sql
+    login_user: root
+    login_password: ExpenseApp@1
+    login_host : mysql-dev.keerthanadevops.online
+
+- name : enable system services
+  ansible.builtin.systemd_service:
+    name: backend
+    state : restarted
+    enabled: yes
+    daemon_reload: yes
