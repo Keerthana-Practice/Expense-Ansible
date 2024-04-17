@@ -10,7 +10,7 @@
 
 - name: imporing thr prerquisite using common file
   ansible.builtin.import_role:
-    name: common
+    name: Common
     tasks_from: Pre
 
 - name: start nginx sever
