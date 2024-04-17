@@ -8,7 +8,7 @@
     src: expense.conf
     dest: /etc/nginx/default.d/expense.conf
 
-- name: imporing thr prerquisite using common file
+- name: importing thr prerquisite using common file
   ansible.builtin.import_role:
     name: common
     tasks_from: Pre
