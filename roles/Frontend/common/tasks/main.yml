@@ -1,2 +1,2 @@
-- name : setting promt
+- name : setting prompt
   ansible.builtin.shell: set-prompt {{ component }}
