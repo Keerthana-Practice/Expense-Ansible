@@ -11,7 +11,7 @@
 - name: importing thr prerquisite using common file
   ansible.builtin.import_role:
     name: common
-    tasks_from: Pre
+    tasks_from: main
 
 - name: start nginx sever
   ansible.builtin.systemd_service:
